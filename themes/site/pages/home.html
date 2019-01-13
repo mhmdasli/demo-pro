@@ -1,0 +1,20 @@
+{% extends "/layout/index.html" %}
+
+{% block title %}Home{% endblock %}
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {{ include('/partials/gallery.html') }}
+    <div class="container">
+       <div id="products">
+           {% include '/partials/sections/products.html' %}
+       </div>
+    </div>
+    <script>
+        function updateProducts(data) {
+            $('#products').html(data);
+        }
+    </script>
+{% endblock %}

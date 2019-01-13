@@ -1,0 +1,7 @@
+<div class="row m-t-md">
+    {% for product in products %}
+        <div class="col-sm-3 m-t-sm text-center">
+            {{ product.link|raw }}
+        </div>
+    {% endfor %}
+</div>

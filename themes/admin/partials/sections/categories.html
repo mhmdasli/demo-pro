@@ -1,0 +1,23 @@
+{% for key,category in categories %}
+<div class="col-12 m-y-xs">
+    <button id="btnGroupDrop1{{ key }}" type="button" class="btn btn-secondary btn-block dropdown-toggle b"
+            data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"
+    >{{ category.title }}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop{{ key }}">
+        <a class="dropdown-item" href="#"
+           data-request="onGetCategoryProducts"
+           data-request-data="'category_id':'{{ category.id }}'"
+           data-request-success="updateProducts(data)"
+        >Show Products
+            <a class="dropdown-item" href="#"
+               data-request="onDeleteCategory"
+               data-request-data="'category_id':'{{ category.id }}'"
+               data-request-confirm="are you sure?"
+               data-request-success="updateCategories(data)"
+            >Delete</a>
+        </a>
+    </div>
+</div>
+{% endfor %}

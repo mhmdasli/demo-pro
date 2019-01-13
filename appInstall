@@ -1,0 +1,16 @@
+#!/usr/bin/php -q
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+
+$app = new \App\App();
+
+
+$status = $app->install();
+
+
+exit($status);
+
+
+?>

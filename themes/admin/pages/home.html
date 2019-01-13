@@ -1,0 +1,68 @@
+{% extends "/layout/index.html" %}
+
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        iframe {
+            display: block !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row m-t-md">
+            <div class="col-lg-3 col-sm-12 bg-dark ">
+                <div class="col-12 m-y-sm">
+                    <button class="btn btn-primary btn-block"
+                            data-request="onGetAllProducts"
+                            data-request-data="'category_id':'0'"
+                            data-request-success="updateProducts(data)"
+                    > All Products
+                    </button>
+                </div>
+                <div class="col-12 m-y-sm">
+                    <button class="btn btn-primary btn-block"
+                            data-request="onGetCategoryProducts"
+                            data-request-data="'category_id':'0'"
+                            data-request-success="updateProducts(data)"
+                    >Slider Products</button>
+                </div>
+                <div id="categories">
+                    {% include '/partials/sections/categories.html' %}
+                </div>
+                <div class="col-12 m-y-sm">
+                    <form data-request="onAddCategory" method="post" data-request-success="updateCategories(data)"
+                          data-request-flash="Success">
+                        <input type="text" name="title" class="form-control" placeholder="Enter Category title">
+                        <button type="submit" class="btn btn-success btn-block">Add Category</button>
+                    </form>
+
+                </div>
+            </div>
+            <div class="col-lg-9 col-sm-12 bg-light">
+                <div id="products">
+                    {% include '/partials/sections/products.html' %}
+                </div>
+            </div>
+        </div>
+        <div id="snackbar"></div>
+    </div>
+    <script>
+        function updateCategories(data) {
+            $('#categories').html(data)
+            var x = document.getElementById("snackbar");
+            x.innerHTML='Categories updated';
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+        function updateProducts(data) {
+            $('#products').html(data)
+            var x = document.getElementById("snackbar");
+            x.innerHTML='Products Updated';
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,28 @@
+<div class="row">
+    {% for product in products %}
+    <div class="col-sm-4">
+        <div class="card m-2 ">
+            {{ product.link|raw }}
+            <button class="btn btn-danger"
+                    data-request="onDeleteProduct"
+                    data-request-data="'product_id':'{{ product.id }}'"
+                    data-request-confirm="are you sure?"
+                    data-request-success="updateProducts(data)"
+            >Delete
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+    {% if category_id > '-1' %}
+    <div class="col-sm-4">
+        <div class="card m-2 ">
+            <form data-request="onAddProduct" data-request-data="'category_id':'{{ category_id }}'"
+                  data-request-success="updateProducts(data)">
+                <label>Add New Product</label>
+                <textarea name="link" class="form-control" rows="6" placeholder="insert iframe here"></textarea>
+                <button type="submit" class="btn btn-block btn-primary">Add</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</div>
