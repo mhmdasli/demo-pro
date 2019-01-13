@@ -27,7 +27,10 @@ templating engine to manage the html themes.
  custom js library that handle the ajax requests by using html data-attributes.  
 
 ## Local installation
-clone and install composer 
+clone and install composer  or install via composer 
+``` composer log
+composer create-project mhmdasli/demo-proj YourFolderName --stability=dev
+```
 
 add .env file to your root and include this variables
 ```.dotenv
